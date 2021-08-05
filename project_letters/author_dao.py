@@ -6,8 +6,7 @@ class AuthorDao():
         self.authors = authors
 
     def get_author(self, author_id):
-        author = self.authors[author_id]
-        return author
+        return self.authors[author_id]
 
     def create_author(self, new_author):
         if new_author in self.authors.values():

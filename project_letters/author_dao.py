@@ -1,8 +1,8 @@
-from author import Author
 from exceptions import ObjectAlreadyExistsError
 
+
 class AuthorDao():
-    def __init__ (self, authors=dict()):
+    def __init__(self, authors=dict()):
         self.authors = authors
 
     def get_author(self, author_id):
@@ -13,7 +13,5 @@ class AuthorDao():
             raise ObjectAlreadyExistsError
         else:
             new_id = len(self.authors) + 1
+            new_author.author_id = new_id
             self.authors[new_id] = new_author
-  
-
-    

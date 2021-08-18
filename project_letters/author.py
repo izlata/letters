@@ -8,6 +8,7 @@ class Author():
         self.link = link
 
     def __eq__(self, other):
-        return isinstance(other, Author) and \
-            self.name == other.name and \
-            self.dob == other.dob
+        is_instance_author = isinstance(other, Author)
+        is_same_name = self.name == other.name
+        is_same_dob = self.dob == other.dob
+        return is_instance_author and is_same_name and is_same_dob

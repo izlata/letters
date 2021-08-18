@@ -7,18 +7,25 @@ from datetime import date
 
 
 class TestAuthorDao(unittest.TestCase):
-    def test_get_author(self):
-        author_dao = AuthorDao(authors={1: Author(1, 'A A', date(1980, 12, 20)),
-                                        2: Author(2, 'B B', date(1990, 1, 15))})
-        self.assertEqual(author_dao.get_author(1), Author(1, 'A A', date(1980, 12, 20)))
-        self.assertEqual(author_dao.get_author(2), Author(2, 'B B', date(1990, 1, 15)))
-        with self.assertRaises(KeyError):
-            author_dao.get_author(5)
+    def setUp(self):
+        self.dao = AuthorDao(authors={1: Author(1, 'A A', date(1980, 12, 20)),
+                                      2: Author(2, 'B B', date(1990, 1, 15))})
 
-    def test_create_author(self):
-        author_dao = AuthorDao(authors={1: Author(1, 'A A', date(1980, 12, 20))})
-        author_dao.create_author(Author(0, 'B B', date(1990, 1, 15)))
-        self.assertEqual(author_dao.authors,
-                         {1: Author(1, 'A A', date(1980, 12, 20)), 2: Author(2, 'B B', date(1990, 1, 15))})
+    def test_get_author_existing_key(self):
+        self.assertEqual(self.dao.get_author(1), Author(1, 'A A', date(1980, 12, 20)))
+        self.assertEqual(self.dao.get_author(2), Author(2, 'B B', date(1990, 1, 15)))
+
+    def test_get_author_wrong_key(self):
+        with self.assertRaises(KeyError):
+            self.dao.get_author(5)
+
+    def test_create_author_new_record(self):
+        self.dao.create_author(Author(0, 'C C', date(2000, 2, 2)))
+        updated_dict = {1: Author(1, 'A A', date(1980, 12, 20)),
+                        2: Author(2, 'B B', date(1990, 1, 15)),
+                        3: Author(3, 'C C', date(2000, 2, 2))}
+        self.assertEqual(self.dao.authors, updated_dict)
+
+    def test_create_author_existing_record(self):
         with self.assertRaises(ObjectAlreadyExistsError):
-            author_dao.create_author(Author(0, 'A A', date(1980, 12, 20)))
+            self.dao.create_author(Author(0, 'A A', date(1980, 12, 20)))

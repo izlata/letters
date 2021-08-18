@@ -7,6 +7,7 @@ class Letter():
         self.source = source
 
     def __eq__(self, other):
-        return isinstance(other, Letter) and \
-            self.author_id == other.author_id and \
-            self.content == other.content
+        is_instance_letter = isinstance(other, Letter)
+        is_same_author_id = self.author_id == other.author_id
+        is_same_content = self.content == other.content
+        return is_instance_letter and is_same_author_id and is_same_content

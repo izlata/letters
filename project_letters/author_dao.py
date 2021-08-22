@@ -1,4 +1,4 @@
-from exceptions import ObjectAlreadyExistsError
+from project_letters.exceptions import ObjectAlreadyExistsError
 
 
 class AuthorDao():

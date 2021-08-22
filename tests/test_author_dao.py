@@ -1,6 +1,6 @@
-from author import Author
-from author_dao import AuthorDao
-from exceptions import ObjectAlreadyExistsError
+from project_letters.author import Author
+from project_letters.author_dao import AuthorDao
+from project_letters.exceptions import ObjectAlreadyExistsError
 
 import unittest
 from datetime import date

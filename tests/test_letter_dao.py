@@ -1,6 +1,6 @@
-from letter import Letter
-from letter_dao import LetterDao
-from exceptions import ObjectAlreadyExistsError
+from project_letters.letter import Letter
+from project_letters.letter_dao import LetterDao
+from project_letters.exceptions import ObjectAlreadyExistsError
 
 import unittest
 

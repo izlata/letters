@@ -1,7 +1,8 @@
 class Author():
-    def __init__(self, author_id, name, dob=None, info=None, photo=None, link=None):
+    def __init__(self, author_id, name, active=False, dob=None, info=None, photo=None, link=None):
         self.author_id = author_id
         self.name = name
+        self.active = active
         self.dob = dob
         self.info = info
         self.photo = photo

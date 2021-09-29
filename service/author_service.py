@@ -13,11 +13,8 @@ class AuthorService():
             raise ObjectAlreadyExistsError
         else:
             new_author.active = True
-            return new_author
-
-    def save_author(self, author, author_id=None):
-        if author_id is None:
-            new_author = self.activate_author(author)
             self.dao.create_author(new_author)
-        else:
-            self.dao.update_author(author_id, author)
+
+    def update_author(self, author_id, author):
+        assert author_id is not None, "author_id should not be None"
+        self.dao.update_author(author_id, author)
